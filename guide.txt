@@ -1,0 +1,73 @@
+Google AdSense Integration Guide for TempMail Pro
+
+1. AdSense Application Requirements:
+   - Website must be at least 6 months old
+   - Have unique, high-quality content
+   - Follow AdSense program policies
+   - Have privacy policy and terms of service pages (already implemented)
+   - Clear navigation and professional design
+   - No prohibited content
+
+2. Application Process:
+   a. Go to https://www.google.com/adsense/start
+   b. Sign in with your Google account
+   c. Enter your website URL and contact information
+   d. Wait for approval (typically 1-2 weeks)
+
+3. After Approval:
+   a. Get your AdSense code
+   b. Add it to the site by creating a new component:
+
+   src/components/AdUnit.tsx:
+   ```tsx
+   export default function AdUnit({ slot }: { slot: string }) {
+     useEffect(() => {
+       try {
+         (window.adsbygoogle = window.adsbygoogle || []).push({});
+       } catch (e) {
+         console.error('AdSense error:', e);
+       }
+     }, []);
+
+     return (
+       <ins
+         className="adsbygoogle"
+         style={{ display: 'block' }}
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" // Replace with your client ID
+         data-ad-slot={slot}
+         data-ad-format="auto"
+         data-full-width-responsive="true"
+       />
+     );
+   }
+   ```
+
+4. Ad Placement:
+   - Already implemented ad containers in the layout
+   - Use the AdUnit component in these locations
+   - Follow AdSense guidelines for ad placement
+   - Don't place ads too close to navigation or interactive elements
+
+5. Performance Considerations:
+   - Load ads asynchronously
+   - Monitor site speed after ad implementation
+   - Use lazy loading for below-the-fold ads
+   - Don't overload pages with too many ads
+
+6. Compliance:
+   - Update privacy policy to mention ad tracking
+   - Include cookie consent if required by your jurisdiction
+   - Follow GDPR requirements if serving EU users
+
+7. Optimization:
+   - Test different ad sizes and placements
+   - Monitor CTR and revenue in AdSense dashboard
+   - A/B test ad positions
+   - Use auto ads for optimal placement
+
+Remember:
+- Keep content high-quality and updated
+- Monitor site performance
+- Follow all AdSense policies
+- Don't click your own ads
+- Be patient with earnings growth
